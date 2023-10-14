@@ -1,8 +1,8 @@
-if (typeof window.livewire === 'undefined') {
-    throw 'Livewire Vue Plugin: window.livewire is undefined. Make sure @livewireScripts is placed above this script include'
+if (typeof window.Livewire === 'undefined') {
+    throw 'Livewire Vue Plugin: window.Livewire is undefined. Make sure @livewireScripts is placed above this script include'
 }
 
-window.livewire.hook('message.received', (message, component) => {
+window.Livewire.hook('message.received', (message, component) => {
     if (! window.Vue) return
 
     if (! message.response.effects.html) return
@@ -15,11 +15,11 @@ window.livewire.hook('message.received', (message, component) => {
     message.response.effects.html = div.firstElementChild.outerHTML
 })
 
-window.livewire.hook('element.initialized', el => {
+window.Livewire.hook('element.initialized', el => {
     if (el.__vue__) el.__livewire_ignore = true
 })
 
-window.livewire.hook('interceptWireModelSetValue', (value, el) => {
+window.Livewire.hook('interceptWireModelSetValue', (value, el) => {
     // If it's a vue component pass down the value prop.
     if (! el.__vue__) return
 
@@ -33,7 +33,7 @@ window.livewire.hook('interceptWireModelSetValue', (value, el) => {
     window.Vue.config.silent = originalSilent
 })
 
-window.livewire.hook('interceptWireModelAttachListener', (directive, el, component, debounceIf) => {
+window.Livewire.hook('interceptWireModelAttachListener', (directive, el, component, debounceIf) => {
     // If it's a vue component pass down the value prop.
     if (! el.__vue__) return
 
